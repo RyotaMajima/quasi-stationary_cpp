@@ -43,24 +43,24 @@ double i2x(int i){
 double i2k(int i){
     return 2 * M_PI * (i < N / 2 ? i : i - N) / L;
 }
-double getE(double begin, int index, double width){
+double i2E(double begin, int index, double width){
     return begin + index * width;
 }
 
-double groundstate(double x, double X){
+double groundState(double x, double X){
     return pow(1 /(SIGMA * SIGMA * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * SIGMA * SIGMA));
 }
-double firstexcited(double x, double X){
+double firstExcited(double x, double X){
     return (sqrt(2) / (SIGMA)) * (x - X) * pow(1 / (SIGMA * SIGMA * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * SIGMA * SIGMA));
 }
-double secondexcited(double x, double X){
+double secondExcited(double x, double X){
     return sqrt(1.0 / ((3.0 / 2.0) * pow(SIGMA, 4) - pow(SIGMA, 2) + (1.0 / 2.0))) * (1 / sqrt(2)) * (2 * (x - X) * (x - X) - 1) * pow(1 / (SIGMA * SIGMA * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * SIGMA * SIGMA));
 }
 
 //‰Šú‰»—pŠÖ”‚Ì’è‹`
 void init(vC &f){
     for (int i = 0; i < N; i++){
-        f[i] = firstexcited(i2x(i), X);
+        f[i] = firstExcited(i2x(i), X);
     }
 }
 
@@ -139,7 +139,7 @@ void getPeaks(vector<pair<double, int>> &peak, vector<double> &res){
     cout << "index" << "\t" << "E" << "\t" << "peak value" << endl;
     cout << left;
     for (auto pair : peak){
-        cout << pair.second << "\t" << getE(E_BEGIN, pair.second, dE);
+        cout << pair.second << "\t" << i2E(E_BEGIN, pair.second, dE);
         cout << setprecision(3);
         cout << "\t" << pair.first << endl;
     }
@@ -194,7 +194,7 @@ int main(){
         //Ï•ªŒvŽZ
         for (int j = 0; j < EN; j++){
             for (int k = 0; k < N; k++){
-                A[j][k] += f[k] * polar(dt, getE(E_BEGIN, j, dE) * (i * dt));
+                A[j][k] += f[k] * polar(dt, i2E(E_BEGIN, j, dE) * (i * dt));
             }
         }
 
@@ -218,7 +218,7 @@ int main(){
     ofs << scientific;
     for (int i = 0; i < EN; i++){
         res[i] = simpson(A[i]);
-        ofs << getE(E_BEGIN, i, dE) << "\t" << res[i] << endl;
+        ofs << i2E(E_BEGIN, i, dE) << "\t" << res[i] << endl;
     }
 
     ofs.close();
@@ -231,14 +231,14 @@ int main(){
 
     for (int i = 0; i < peakNum; i++){
         init(f);
-        getEigenfunction(phi[i], f, plan_for, plan_back, getE(E_BEGIN, peak[i].second, dE));
+        getEigenfunction(phi[i], f, plan_for, plan_back, i2E(E_BEGIN, peak[i].second, dE));
     }
 
     vector<vector<double>> ho(3, vector<double>(N));
     for (int i = 0; i < N; i++){
-        ho[0][i] = norm(groundstate(i2x(i), 0.0));
-        ho[1][i] = norm(firstexcited(i2x(i), 0.0));
-        ho[2][i] = norm(secondexcited(i2x(i), 0.0));
+        ho[0][i] = norm(groundState(i2x(i), 0.0));
+        ho[1][i] = norm(firstExcited(i2x(i), 0.0));
+        ho[2][i] = norm(secondExcited(i2x(i), 0.0));
     }
 
     ofs.open("./output/output_phi.txt");
