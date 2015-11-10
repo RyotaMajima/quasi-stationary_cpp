@@ -116,9 +116,6 @@ void timeEvolution(vC &f, fftw_plan plan_for, fftw_plan plan_back){
     fftw_execute(plan_back);
 }
 
-//比較関数
-bool cmp(const pair<double, int> &i, const pair<double, int> &j) { return i.first > j.first; }
-
 //エネルギーピークのインデックスを求める関数
 void getPeaks(vector<pair<double, int>> &peak, vector<double> &res){
     //微分値が正から負に変わったところの値とインデックス
@@ -129,7 +126,7 @@ void getPeaks(vector<pair<double, int>> &peak, vector<double> &res){
     }
 
     //ピーク値の大きい順にソート
-    sort(peak.begin(), peak.end(), cmp);
+    sort(peak.begin(), peak.end(), [](const pair<double, int> &i, const pair<double, int> &j){ return i.first > j.first; });
 
     double E_th = 0.02; //しきい値
     //しきい値以下の要素を削除
