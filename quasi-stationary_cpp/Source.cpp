@@ -252,7 +252,6 @@ int main(){
             }
     }
 
-    ofs << scientific;
     for (int i = 0; i < N; i++){
         ofs << i2x(i) << "\t" << V(i2x(i)) << "\t";
         for (int j = 0; j < peakNum; j++) {
