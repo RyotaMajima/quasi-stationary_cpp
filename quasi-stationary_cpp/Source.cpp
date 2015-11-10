@@ -33,9 +33,9 @@ const double X = -0.5; //初期波束の原点からのずれ
 const double X_OPT = 4.0; //光学ポテンシャルをかける位置
 const double b = 1.0 / 3.0; //3次ポテンシャルの係数
 
-const double E_BEGIN = -1.5, E_END = 1.0;
-const int EN = 1000;
-const double dE = (E_END - E_BEGIN) / EN;
+const double E_BEGIN = -1.5, E_END = 1.0; //探索するエネルギーの両端
+const int EN = 1000; //エネルギー分割数
+const double dE = (E_END - E_BEGIN) / EN; //エネルギー刻み幅
 
 double i2x(int i){
     return X_BEGIN + (i + 1) * DELTA_X;
