@@ -232,9 +232,10 @@ int main(){
 
     vector<vector<double>> ho(3, vector<double>(N));
     for (int i = 0; i < N; i++){
-        ho[0][i] = norm(groundState(i2x(i), 0.0));
-        ho[1][i] = norm(firstExcited(i2x(i), 0.0));
-        ho[2][i] = norm(secondExcited(i2x(i), 0.0));
+        double x = i2x(i);
+        ho[0][i] = norm(groundState(x, 0.0));
+        ho[1][i] = norm(firstExcited(x, 0.0));
+        ho[2][i] = norm(secondExcited(x, 0.0));
     }
 
     ofs.open("./output/output_phi.txt");
