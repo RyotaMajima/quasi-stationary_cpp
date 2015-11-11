@@ -134,10 +134,10 @@ void getPeaks(vector<pair<double, int>> &peak, vector<double> &res){
 
     //得られたピーク値を表示
     cout << "index" << "\t" << "E" << "\t" << "peak value" << endl;
-    cout << left;
+    cout << setprecision(3);
     for (auto pair : peak){
         cout << pair.second << "\t" << i2E(E_BEGIN, pair.second, dE);
-        cout << setprecision(3);
+
         cout << "\t" << pair.first << endl;
     }
 }
