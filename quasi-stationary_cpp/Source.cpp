@@ -137,7 +137,6 @@ void getPeaks(vector<pair<double, int>> &peak, vector<double> &res){
     cout << setprecision(3);
     for (auto pair : peak){
         cout << pair.second << "\t" << i2E(E_BEGIN, pair.second, dE);
-
         cout << "\t" << pair.first << endl;
     }
 }
