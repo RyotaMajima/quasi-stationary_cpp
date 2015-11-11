@@ -238,18 +238,18 @@ int main(){
         ho[2][i] = norm(secondExcited(x, 0.0));
     }
 
-    ofs.open("./output/output_phi.txt");
-    if (!ofs){
-        cerr << "file open error!" << endl;
-        exit(1);
-    }
-
     //Ä‹KŠi‰»
     for (int i = 0; i < peakNum; i++){
         double sNorm = simpson(phi[i]);
             for (int j = 0; j < N; j++){
                 phi[i][j] = norm(phi[i][j]) / sNorm;
             }
+    }
+
+    ofs.open("./output/output_phi.txt");
+    if (!ofs){
+        cerr << "file open error!" << endl;
+        exit(1);
     }
 
     for (int i = 0; i < N; i++){
