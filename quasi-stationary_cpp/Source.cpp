@@ -28,7 +28,7 @@ const double T_END = 75; //終了時刻
 const int TN = 500; //時間分割数
 const double dt = T_END / TN; //時間刻み幅
 
-const double SIGMA = 0.9; //波束の幅
+const double S = 0.9; //波束の幅
 const double X = -0.5; //初期波束の原点からのずれ
 const double X_OPT = 4.0; //光学ポテンシャルをかける位置
 const double b = 1.0 / 3.0; //3次ポテンシャルの係数
@@ -48,13 +48,13 @@ double i2E(double begin, int index, double width){
 }
 
 double groundState(double x, double X){
-    return pow(1 /(SIGMA * SIGMA * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * SIGMA * SIGMA));
+    return pow(1 /(S * S * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * S * S));
 }
 double firstExcited(double x, double X){
-    return (sqrt(2) / (SIGMA)) * (x - X) * pow(1 / (SIGMA * SIGMA * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * SIGMA * SIGMA));
+    return (sqrt(2) / (S)) * (x - X) * pow(1 / (S * S * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * S * S));
 }
 double secondExcited(double x, double X){
-    return sqrt(1.0 / ((3.0 / 2.0) * pow(SIGMA, 4) - pow(SIGMA, 2) + (1.0 / 2.0))) * (1 / sqrt(2)) * (2 * (x - X) * (x - X) - 1) * pow(1 / (SIGMA * SIGMA * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * SIGMA * SIGMA));
+    return sqrt(1.0 / ((3.0 / 2.0) * pow(S, 4) - pow(S, 2) + (1.0 / 2.0))) * (1 / sqrt(2)) * (2 * (x - X) * (x - X) - 1) * pow(1 / (S * S * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * S * S));
 }
 
 //初期化用関数の定義
