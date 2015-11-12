@@ -51,10 +51,11 @@ double groundState(double x, double X){
     return pow(1 /(S * S * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * S * S));
 }
 double firstExcited(double x, double X){
-    return (sqrt(2) / (S)) * (x - X) * pow(1 / (S * S * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * S * S));
+    return ((sqrt(2.0) * (x - X)) / S) * pow(1 / (S * S * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * S * S));
 }
 double secondExcited(double x, double X){
-    return sqrt(1.0 / ((3.0 / 2.0) * pow(S, 4) - pow(S, 2) + (1.0 / 2.0))) * (1 / sqrt(2)) * (2 * (x - X) * (x - X) - 1) * pow(1 / (S * S * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * S * S));
+    return sqrt((2 * (x - X) * (x - X) - 1) / (3 * S*S*S*S - 2 * S*S + 1)) * pow(1 / (S * S * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * S * S));
+    //return sqrt(1.0 / ((3.0 / 2.0) * pow(S, 4) - pow(S, 2) + (1.0 / 2.0))) * (1 / sqrt(2)) * (2 * (x - X) * (x - X) - 1) * pow(1 / (S * S * M_PI), 1.0 / 4.0) * exp(-(x - X) * (x - X) / (2 * S * S));
 }
 
 //èâä˙âªópä÷êîÇÃíËã`
